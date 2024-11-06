@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.container').forEach(particle => {
+    document.querySelectorAll('.flame-emoji').forEach(particle => {
         let directionX = Math.random() < 0.5 ? 1 : -1;
         let directionY = Math.random() < 0.5 ? 1 : -1;
         let speedX = (Math.random() * 2) + 1;
