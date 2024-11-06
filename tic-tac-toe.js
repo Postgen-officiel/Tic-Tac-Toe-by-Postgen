@@ -200,30 +200,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.flame-emoji').forEach(particle => {
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.container').forEach(particle => {
         let directionX = Math.random() < 0.5 ? 1 : -1;
         let directionY = Math.random() < 0.5 ? 1 : -1;
         let speedX = (Math.random() * 2) + 1;
         let speedY = (Math.random() * 2) + 1;
-        let x = Math.random() * (window.innerWidth - 50);
-        let y = Math.random() * (window.innerHeight - 50);
+        let x = Math.random() * (window.innerWidth - 60);
+        let y = Math.random() * (window.innerHeight - 60);
 
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
 
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        particle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - particle.getBoundingClientRect().left;
+            offsetY = e.clientY - particle.getBoundingClientRect().top;
+            particle.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                x = e.clientX - offsetX;
+                y = e.clientY - offsetY;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            particle.style.cursor = 'grab';
+        });
+
         function moveParticle() {
-            if (x + 50 >= window.innerWidth || x <= 0) directionX *= -1;
-            if (y + 50 >= window.innerHeight || y <= 0) directionY *= -1;
+            if (!isDragging) {
+                if (x + 60 >= window.innerWidth || x <= 0) directionX *= -1;
+                if (y + 60 >= window.innerHeight || y <= 0) directionY *= -1;
 
-            x += directionX * speedX;
-            y += directionY * speedY;
+                x += directionX * speedX;
+                y += directionY * speedY;
 
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+            }
 
             requestAnimationFrame(moveParticle);
         }
+
         moveParticle();
     });
 });
