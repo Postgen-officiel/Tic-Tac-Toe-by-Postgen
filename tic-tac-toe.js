@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
-            if (isGameActive && cell.textContent === '' && currentPlayer === 'X') {
+            if (isGameActive && cell.textContent === '' && (currentPlayer === 'X' || (!isSinglePlayer && currentPlayer === 'O'))) {
                 cell.textContent = currentPlayer;
                 cell.classList.add(currentPlayer.toLowerCase());
                 clickSound.play();
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     updatePlayerTurn();
                     if (isSinglePlayer && currentPlayer === 'O') {
                         setTimeout(botMove, 919);
-                        disableMousecClick('X');
                     }
                 }
             }
