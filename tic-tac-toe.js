@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isDragging) {
                 x = e.clientX - offsetX;
                 y = e.clientY - offsetY;
+                x = Math.max(0, Math.min(window.innerWidth - 60, x));
+                y = Math.max(0, Math.min(window.innerHeight - 60, y));
                 particle.style.left = `${x}px`;
                 particle.style.top = `${y}px`;
             }
@@ -238,8 +240,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function moveParticle() {
             if (!isDragging) {
-                if (x + 60 >= window.innerWidth || x <= 0) directionX *= -1;
-                if (y + 60 >= window.innerHeight || y <= 0) directionY *= -1;
+                if (x + 60 > window.innerWidth) {
+                    directionX *= -1;
+                    x = window.innerWidth - 60;
+                } else if (x < 0) {
+                    directionX *= -1;
+                    x = 0;
+                }
+
+                if (y + 60 > window.innerHeight) {
+                    directionY *= -1;
+                    y = window.innerHeight - 60;
+                } else if (y < 0) {
+                    directionY *= -1;
+                    y = 0;
+                }
 
                 x += directionX * speedX;
                 y += directionY * speedY;
