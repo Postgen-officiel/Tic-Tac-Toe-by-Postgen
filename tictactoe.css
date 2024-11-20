@@ -37,6 +37,7 @@ body {
     transition: transform 0.3s ease-in-out, border-radius 0.3s ease-in-out;
     border-radius: 0;
     position: relative;
+    opacity: 96%;
 }
 .cell::before, .cell::after {
     content: '';

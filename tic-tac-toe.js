@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alertMessage.style.display = 'block';
                         playerTurn.style.display = 'none';
                         cells.forEach(cell => {
-                            cell.style.opacity = '0.77';
+                            cell.style.opacity = '0.73';
                         });
                     }, 100);
                 } else {
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alertMessage.style.display = 'block';
                 playerTurn.style.display = 'none';
                 cells.forEach(cell => {
-                    cell.style.opacity = '0.77';
+                    cell.style.opacity = '0.73';
                 });
             }, 100);
         } else {
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cells.forEach(cell => {
                 cell.textContent = '';
                 cell.classList.remove('x', 'o', 'winning-cell');
-                cell.style.opacity = '1'; 
+                cell.style.opacity = '0.96'; 
             });
             currentPlayer = 'X';
             playButton.style.display = 'block';
