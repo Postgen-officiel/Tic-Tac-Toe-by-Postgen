@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         alertMessage.className = 'draw';
                         alertMessage.style.display = 'block';
                         playerTurn.style.display = 'none';
+                        cells.forEach(cell => {
+                            cell.style.opacity = '0.77';
+                        });
                     }, 100);
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
@@ -128,6 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 alertMessage.className = 'draw';
                 alertMessage.style.display = 'block';
                 playerTurn.style.display = 'none';
+                cells.forEach(cell => {
+                    cell.style.opacity = '0.77';
+                });
             }, 100);
         } else {
             currentPlayer = 'X';
@@ -151,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cells.forEach(cell => {
                 cell.textContent = '';
                 cell.classList.remove('x', 'o', 'winning-cell');
+                cell.style.opacity = '1'; 
             });
             currentPlayer = 'X';
             playButton.style.display = 'block';
@@ -171,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalMessage.style.color = 'rgb(2, 210, 72)';
         } else if (type === 'draw') {
             modalMessage.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
-            modalMessage.style.webkitBackgroundClip = 'text';
+            modalMessage.style.BackgroundClip = 'text';
             modalMessage.style.color = 'transparent';
         }
         modal.classList.add('show');
