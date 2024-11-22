@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cells.forEach(cell => {
         cell.style.display = 'none';
+        if (cell.style.display === 'none') {
+            cell.zIndex = '0';
+        };
     });
 
     modeButton.addEventListener('click', () => {
@@ -38,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modeButton.style.display = 'none';
         cells.forEach(cell => {
             cell.style.display = 'flex';
+            if (cell.style.display === 'flex') {
+                cell.zIndex = '2';
+            };
         });
         updatePlayerTurn();
     });
@@ -168,6 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.classList.remove('x', 'o', 'winning-cell');
                 cell.style.opacity = '0.96';
                 cell.style.display = 'none';
+                if (cell.style.display === 'none') {
+                    cell.zIndex = '0';
+                };
             });
             currentPlayer = 'X';
             playButton.style.display = 'block';

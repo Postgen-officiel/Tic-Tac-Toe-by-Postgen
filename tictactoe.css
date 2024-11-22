@@ -15,7 +15,7 @@ body {
     background-clip: text;
     color: transparent;
     margin-bottom: 20px;
-    z-index: 1;
+    z-index: 2;
 }
 #game { 
     display: grid; 
@@ -38,6 +38,10 @@ body {
     border-radius: 0;
     position: relative;
     opacity: 96%;
+    z-index: 2;
+}
+.cell:disabled {
+    z-index: 0;
 }
 .cell::before, .cell::after {
     content: '';
@@ -111,6 +115,7 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     opacity: 80%;
+    z-index: 2;
 }
 #play-button:hover {
     opacity: 73%;
@@ -132,6 +137,7 @@ body {
     cursor: pointer;
     display: none;
     opacity: 80%;
+    z-index: 2;
 }
 #reset-button:hover {
     opacity: 65%;
@@ -144,17 +150,17 @@ body {
 }
 #alert-message.x {
     color:rgb(255, 64, 0);
-    z-index: 1;
+    z-index: 2;
 }
 #alert-message.o {
     color: rgb(2, 210, 72);
-    z-index: 1;
+    z-index: 2;
 }
 #alert-message.draw {
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     background-clip: text;
     color: transparent;
-    z-index: 1;
+    z-index: 2;
 }
 #modal {
     display: none;
@@ -168,37 +174,37 @@ body {
     align-items: center;
     transition: opacity 0.5s ease-in-out;
     opacity: 0;
-    z-index: 1;
+    z-index: 2;
 }
 #modal.show {
     opacity: 1;
-    z-index: 1;
+    z-index: 2;
 }
 #modal-content {
     background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    z-index: 1;
+    z-index: 2;
 }
 #modal-message {
     font-size: 3em;
-    z-index: 1;
+    z-index: 2;
 }
 #player-turn {
     margin-top: 20px;
     font-size: 2em;
     color: white;
     text-align: center;
-    z-index: 1;
+    z-index: 2;
 }
 #player-turn.x {
     color:rgb(255, 64, 0);
-    z-index: 1;
+    z-index: 2;
 }
 #player-turn.o {
     color: rgb(2, 210, 72);
-    z-index: 1;
+    z-index: 2;
 }
 #mode-button {
     position: absolute;
@@ -230,7 +236,7 @@ body {
     font-size: 50px;
     position: absolute;
     animation: flame-flicker 1s infinite alternate;
-    z-index: 0;
+    z-index: 1;
 }
 
 @keyframes flame-flicker {
