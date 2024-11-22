@@ -112,6 +112,7 @@ body {
     background-color: turquoise;
     color: white;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     opacity: 80%;
@@ -133,6 +134,7 @@ body {
     background-color: red;
     color: white;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     display: none;
@@ -214,6 +216,7 @@ body {
     background-color: rgb(0, 251, 0);
     color: white;
     border: none;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     opacity: 80%;
