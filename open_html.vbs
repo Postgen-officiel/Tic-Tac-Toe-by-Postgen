@@ -1,2 +1,2 @@
 Set objShell = CreateObject("WScript.Shell")
-objShell.Run "C:\Users\postw\OneDrive\Documents\GitHub\tic-tac-toe-of-postgen\open_html.bat"
+objShell.Run "C:\chemin\vers\ton\index.html\REPLACE\BY\YOUR\PATH index.bat"
