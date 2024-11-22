@@ -118,7 +118,7 @@ body {
     z-index: 2;
 }
 #play-button:hover {
-    opacity: 73%;
+    opacity: 135%;
 }
 #play-button:disabled {
     background-color: grey;
@@ -217,9 +217,10 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     opacity: 80%;
+    z-index: 2;
 }
 #mode-button:hover {
-    opacity: 77%;
+    opacity: 133%;
 }
 body {
     display: flex;
