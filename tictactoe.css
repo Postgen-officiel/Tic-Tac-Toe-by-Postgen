@@ -21,13 +21,14 @@ body {
     display: grid; 
     grid-template-columns: repeat(3, 100px); 
     grid-template-rows: repeat(3, 100px); 
-    gap: 5px;
+    gap: 10px;
     position: relative;
 }
 .cell { 
     width: 100px; 
     height: 100px; 
-    display: none; 
+    display: none;
+    gap: 5px;
     justify-content: center; 
     align-items: center; 
     font-size: 6em; 
