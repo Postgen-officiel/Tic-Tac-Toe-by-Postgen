@@ -22,12 +22,12 @@ body {
     grid-template-columns: repeat(3, 100px); 
     grid-template-rows: repeat(3, 100px); 
     gap: 5px;
-    position: relative; 
+    position: relative;
 }
 .cell { 
     width: 100px; 
     height: 100px; 
-    display: flex; 
+    display: none; 
     justify-content: center; 
     align-items: center; 
     font-size: 6em; 

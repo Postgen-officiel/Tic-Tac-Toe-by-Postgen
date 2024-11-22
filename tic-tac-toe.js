@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const gameBoard = document.getElementById('game');
     const cells = document.querySelectorAll('.cell');
     const playButton = document.getElementById('play-button');
     const resetButton = document.getElementById('reset-button');
@@ -18,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, 4, 8], [2, 4, 6]
     ];
 
+    cells.forEach(cell => {
+        cell.style.display = 'none';
+    });
+
     modeButton.addEventListener('click', () => {
         clickSound.play();
         if (!isGameActive) {
@@ -30,6 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
         clickSound.play();
         isGameActive = true;
         playButton.style.display = 'none';
+        modeButton.style.display = 'none';
+        cells.forEach(cell => {
+            cell.style.display = 'flex';
+        });
         updatePlayerTurn();
     });
 
@@ -157,10 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cells.forEach(cell => {
                 cell.textContent = '';
                 cell.classList.remove('x', 'o', 'winning-cell');
-                cell.style.opacity = '0.96'; 
+                cell.style.opacity = '0.96';
+                cell.style.display = 'none';
             });
             currentPlayer = 'X';
             playButton.style.display = 'block';
+            modeButton.style.display = 'block';
             resetButton.style.display = 'none';
             alertMessage.style.display = 'none';
             playerTurn.style.display = 'block';
@@ -211,21 +222,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.flame-emoji').forEach(particle => {
         let directionX = Math.random() < 0.5 ? 1 : -1;
         let directionY = Math.random() < 0.5 ? 1 : -1;
-        let speedX = (Math.random() * 2) + 1;
-        let speedY = (Math.random() * 2) + 1;
+        let initialSpeedX = (Math.random() * 2) + 1;
+        let initialSpeedY = (Math.random() * 2) + 1;
+        let speedX = initialSpeedX;
+        let speedY = initialSpeedY;
         let x = Math.random() * (window.innerWidth - 60);
         let y = Math.random() * (window.innerHeight - 60);
-
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
-
         let isDragging = false;
         let offsetX, offsetY;
+        let initialX, initialY, finalX, finalY;
 
         particle.addEventListener('mousedown', (e) => {
             isDragging = true;
             offsetX = e.clientX - particle.getBoundingClientRect().left;
             offsetY = e.clientY - particle.getBoundingClientRect().top;
+            initialX = e.clientX;
+            initialY = e.clientY;
             particle.style.cursor = 'grabbing';
         });
 
@@ -240,9 +254,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            particle.style.cursor = 'grab';
+        document.addEventListener('mouseup', (e) => {
+            if (isDragging) {
+                isDragging = false;
+                finalX = e.clientX;
+                finalY = e.clientY;
+                directionX = finalX - initialX > 0 ? 1 : -1;
+                directionY = finalY - initialY > 0 ? 1 : -1;
+                speedX = Math.abs(finalX - initialX) / 10;
+                speedY = Math.abs(finalY - initialY) / 10;
+                particle.style.cursor = 'grab';
+
+                // Ajoutez une temporisation avant de reprendre la vitesse initiale
+                setTimeout(() => {
+                    let intervalId = setInterval(() => {
+                        if (speedX > initialSpeedX) {
+                            speedX -= 0.05;
+                        } else {
+                            speedX = initialSpeedX;
+                        }
+
+                        if (speedY > initialSpeedY) {
+                            speedY -= 0.05;
+                        } else {
+                            speedY = initialSpeedY;
+                        }
+
+                        if (speedX === initialSpeedX && speedY === initialSpeedY) {
+                            clearInterval(intervalId);
+                        }
+                    }, 50);
+                }, 1453); // Temporisation de 1,45 secondes
+            }
         });
 
         function moveParticle() {
@@ -254,7 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     directionX *= -1;
                     x = 0;
                 }
-
                 if (y + 60 > window.innerHeight) {
                     directionY *= -1;
                     y = window.innerHeight - 60;
@@ -262,14 +304,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     directionY *= -1;
                     y = 0;
                 }
-
                 x += directionX * speedX;
                 y += directionY * speedY;
-
                 particle.style.left = `${x}px`;
                 particle.style.top = `${y}px`;
             }
-
             requestAnimationFrame(moveParticle);
         }
 
